@@ -3,6 +3,8 @@
 namespace App\Http\Requests;
 
 use App\Http\Requests\Api\AbstractApiRequest;
+use App\Rules\Api\AccessLevelRule;
+use App\Rules\Api\MsisdnRule;
 use Illuminate\Validation\Rules\Password;
 
 class RegisterUserRequest extends AbstractApiRequest
@@ -26,8 +28,8 @@ class RegisterUserRequest extends AbstractApiRequest
                 'required', 'string', 'max:50', 'confirmed',
                 Password::min(8),
             ],
-            'msisdn' => 'required',
-            'access_level' => 'required'
+            'msisdn' => ['required', new MsisdnRule()],
+            'access_level' => ['required', new AccessLevelRule()]
         ];
     }
 }
