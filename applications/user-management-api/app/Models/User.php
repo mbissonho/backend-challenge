@@ -12,6 +12,14 @@ class User extends Authenticatable
 {
     use HasApiTokens, HasFactory, Notifiable;
 
+    const ACCESS_LEVEL_PRO = 'pro';
+    const ACCESS_LEVEL_PREMIUM = 'premium';
+
+    const ACCESS_LEVEL_OPTIONS = [
+        self::ACCESS_LEVEL_PRO,
+        self::ACCESS_LEVEL_PREMIUM
+    ];
+
     /**
      * The attributes that are mass assignable.
      *
@@ -21,6 +29,8 @@ class User extends Authenticatable
         'name',
         'email',
         'password',
+        'msisdn',
+        'access_level'
     ];
 
     /**
